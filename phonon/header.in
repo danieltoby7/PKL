@@ -1,0 +1,25 @@
+&CONTROL
+calculation = 'scf'
+prefix ='Al'
+outdir = './work'
+pseudo_dir= '/home/mainadmin/research/toby/pseudo'
+tstress = .TRUE. 
+tprnfor = .TRUE.
+/
+            
+&SYSTEM
+ibrav = 0
+!nbnd = 72
+nat = 16
+ntyp = 3
+ecutwfc=70
+ecutrho=280
+/
+            
+&ELECTRONS
+conv_thr = 1d-5
+mixing_beta = 0.5
+/
+            
+K_POINTS {automatic}
+2 2 1 0 0 0 
