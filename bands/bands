@@ -1,0 +1,44 @@
+&CONTROL
+calculation = 'bands'
+prefix ='Al'
+outdir = './work'
+pseudo_dir= '/home/mainadmin/research/toby/pseudo'
+/
+
+&SYSTEM
+ibrav = 0
+nbnd = 18
+nat = 4
+ntyp = 3
+ecutwfc=70
+ecutrho=280
+/
+
+&ELECTRONS
+conv_thr = 1d-8
+mixing_beta = 0.5
+/
+
+ATOMIC_SPECIES
+Al 26.98 Al.pbe-n-kjpaw_psl.1.0.0.UPF
+S  32.07 S.pbe-n-kjpaw_psl.1.0.0.UPF
+Te 127.60 Te.pbe-n-kjpaw_psl.1.0.0.UPF
+
+CELL_PARAMETERS (angstrom)
+   1.926950333   3.337575880   0.000000000
+   3.853900665  -0.000000000   0.000000000
+   0.000000000   0.000000000  25.000000000
+
+ATOMIC_POSITIONS (crystal)
+Al            0.0000000000       -0.0000000000        0.0049233609
+Al            0.0000000000       -0.0000000000       -0.0983142894
+S             0.6666667000        0.6666666700        0.0421838235
+Te            0.6666667000        0.6666666700       -0.1543928951
+
+
+K_POINTS {crystal_b}
+4
+0.0000000000 0.0000000000 0.0000000000 30 !G
+0.5000000000 0.5000000000 0.0000000000 30 !K
+0.3333333333 0.6666666667 0.0000000000 30 !M
+0.0000000000 0.0000000000 0.0000000000 1  !G
