@@ -1,0 +1,6 @@
+  &DOS
+        prefix='Al'
+        outdir='./work'
+        fildos='Al.dos.dat'
+        emin=-10.0
+        emax= 10.0
