@@ -1,0 +1,21 @@
+set terminal pdfcairo
+set output 'Al.bands.pdf'
+
+input = 'Al.bands.gnu'
+
+E_Fermi=-1.27955
+
+Emax = 8.0
+Emin = -6.3
+
+# k-path
+G1 = 0.0000
+K = 0.5774
+M = 0.9107
+G2 = 1.5774
+
+set yrange[Emin:Emax]
+set xrange[G1:G2]
+
+set xtics("G" G1, "K" K, "M" M,"G" G2)
+plot input using 1:($2-E_Fermi) with lines notitle
