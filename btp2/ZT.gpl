@@ -1,0 +1,28 @@
+  set terminal pdfcairo
+set output 'fom.pdf'
+
+input1 = 'data300.dat'
+input2 = 'data600.dat'
+input3 = 'data900.dat'
+
+E_Fermi=-1.27955
+T1=300
+T2=600
+T3=900
+
+Emax = 1.5
+Emin = -1.5
+
+set title "Figure of Merit vs E-E_f"
+
+
+set xrange[Emin:Emax]
+set yrange[0:10]
+
+set xlabel "{/Helvetica-Italic E}-{/Helvetica-Italic E}_F (eV)
+set ylabel "Figure of Merit" 
+
+set xzeroaxis
+
+plot input1 using (($1*13.60565)-E_Fermi):($5*$5*$6*T1*0.1)/$8 with lines lc rgb "blue" title "300 Kelvin", input2 using (($1*13.60565)-E_Fermi):($5*$5*$6*T2*0.1)/$8 with lines lc rgb "red" title "600 Kelvin", input3 using (($1*13.60565)-E_Fermi):($5*$5*$6*T3*0.1)/$8 with lines lc rgb "black" title "900 Kelvin"
+#plot input1 using (($1*13.60565)-E_Fermi):($5*$5*$6*T1)/$8 with lines lc rgb "blue" title "300 Kelvin", input2 using (($1*13.60565)-E_Fermi):($5*$5*$6*T2)/$8 with lines lc rgb "red" title "600 Kelvin", input3 using (($1*13.60565)-E_Fermi):($5*$5*$6*T3)/$8 with lines lc rgb "black" title "900 Kelvin"
