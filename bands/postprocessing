@@ -1,0 +1,4 @@
+&BANDS
+prefix  = 'Al'
+outdir  = './work'
+filband = 'Al.bands'
