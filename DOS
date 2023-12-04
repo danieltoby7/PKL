@@ -1,0 +1,121 @@
+%SCF
+&CONTROL
+calculation = 'scf'
+prefix ='Al'
+outdir = './work'
+pseudo_dir= '/home/mainadmin/research/toby/pseudo'
+/
+
+&SYSTEM
+ibrav = 0
+nbnd = 18
+nat = 4
+ntyp = 3
+ecutwfc=70
+ecutrho=280
+/
+
+&ELECTRONS
+conv_thr = 1d-8
+mixing_beta = 0.5
+/
+
+ATOMIC_SPECIES
+Al 26.98 Al.pbe-n-kjpaw_psl.1.0.0.UPF
+S  32.07 S.pbe-n-kjpaw_psl.1.0.0.UPF
+Te 127.60 Te.pbe-n-kjpaw_psl.1.0.0.UPF
+
+CELL_PARAMETERS (angstrom)
+   1.926950333   3.337575880   0.000000000
+   3.853900665  -0.000000000   0.000000000
+   0.000000000   0.000000000  25.000000000
+
+ATOMIC_POSITIONS (crystal)
+Al            0.0000000000       -0.0000000000        0.0049233609
+Al            0.0000000000       -0.0000000000       -0.0983142894
+S             0.6666666667        0.6666666666        0.0421838235
+Te            0.6666666667        0.6666666666       -0.1543928951
+
+
+K_POINTS {automatic}
+10 10 1 0 0 0
+\end{lstlisting}
+\subsubsection{nscf}
+
+
+%NSCF
+&CONTROL
+calculation = 'nscf'
+prefix ='Al'
+outdir = './work'
+pseudo_dir= '/home/mainadmin/research/toby/pseudo'
+verbosity = 'high'
+/
+
+&SYSTEM
+ibrav = 0
+nbnd = 18
+nat = 4
+ntyp = 3
+ecutwfc=70
+ecutrho=280
+occupations='tetrahedra'
+/
+
+&ELECTRONS
+conv_thr = 1d-8
+mixing_beta = 0.5
+/
+
+ATOMIC_SPECIES
+Al 26.98 Al.pbe-n-kjpaw_psl.1.0.0.UPF
+S  32.07 S.pbe-n-kjpaw_psl.1.0.0.UPF
+Te 127.60 Te.pbe-n-kjpaw_psl.1.0.0.UPF
+
+CELL_PARAMETERS (angstrom)
+   1.926950333   3.337575880   0.000000000
+   3.853900665  -0.000000000   0.000000000
+   0.000000000   0.000000000  25.000000000
+
+ATOMIC_POSITIONS (crystal)
+Al            0.0000000000       -0.0000000000        0.0049233609
+Al            0.0000000000       -0.0000000000       -0.0983142894
+S             0.6666666667        0.6666666666        0.0421838235
+Te            0.6666666667        0.6666666666       -0.1543928951
+
+K_POINTS {automatic}
+48 48 1 0 0 0
+
+%DOS PP
+    &DOS
+        prefix='Al'
+        outdir='./work'
+        fildos='Al.dos.dat'
+        emin=-10.0
+        emax= 10.0
+
+
+%DOS plot GNUPLOT
+set terminal pdfcairo
+set output 'dos.pdf'
+
+input = 'Al.dos.dat'
+
+E_Fermi=-1.27955
+
+Emax = 8.0
+Emin = -8.0
+
+set title "Density of State"
+
+
+set yrange[Emin:Emax]
+
+set ytics 1
+
+set ylabel "{/Helvetica-Italic E}-{/Helvetica-Italic E}_F (eV)
+set xlabel "DOS (states/eV/u.c.}"
+
+set xzeroaxis
+
+plot input using 2:($1-E_Fermi) with filledcurve y=0 lc rgb "blue" notitle
