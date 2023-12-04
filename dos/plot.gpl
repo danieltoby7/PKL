@@ -1,0 +1,23 @@
+set terminal pdfcairo
+set output 'dos.pdf'
+
+input = 'Al.dos.dat'
+
+E_Fermi=-1.27955
+
+Emax = 8.0
+Emin = -8.0
+
+set title "Density of State"
+
+
+set yrange[Emin:Emax]
+
+set ytics 1
+
+set ylabel "{/Helvetica-Italic E}-{/Helvetica-Italic E}_F (eV)
+set xlabel "DOS (states/eV/u.c.}"
+
+set xzeroaxis
+
+plot input using 2:($1-E_Fermi) with filledcurve y=0 lc rgb "blue" notitle
