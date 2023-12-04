@@ -1,0 +1,25 @@
+set terminal pdfcairo
+set output 'seebeck.pdf'
+
+input1 = 'data300.dat'
+input2 = 'data600.dat'
+input3 = 'data900.dat'
+
+E_Fermi=-1.27955
+
+Emax = 1.5
+Emin = -1.5
+
+set title "{/Symbol s/t} vs E-E_f"
+
+sf=25.00000000/4.914417065
+
+set xrange[Emin:Emax]
+#set ytics 1 
+
+set xlabel "{/Helvetica-Italic E}-{/Helvetica-Italic E}_F (eV)
+set ylabel "{/Symbol s/t} (1/{/symbol W}.m.s *10^{19}) "
+
+set xzeroaxis
+
+plot input1 using (($1*13.60565)-E_Fermi):($6*1e-19*sf) with lines lc rgb "blue" title "300 Kelvin", input2 using (($1*13.60565)-E_Fermi):($6*1e-19*sf) with lines lc rgb "red" title "600 Kelvin", input3 using (($1*13.60565)-E_Fermi):($6*1e-19*sf) with lines lc rgb "black" title "900 Kelvin"
